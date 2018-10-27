@@ -7,7 +7,9 @@
 
             <!-- Leaflet -->
             <link rel="stylesheet" href="leaflet/leaflet.css" />
-            <script src="leaflet/leaflet.js"></script>
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 
             <style>
                 body { margin:0; padding:0; }
@@ -35,7 +37,9 @@
         <body>
 
         <div id="map"></div>
-
+        <script src="leaflet/leaflet.js"></script>
+            
+        <script src="node_modules/leaflet.locatecontrol/src/L.Control.Locate.js" ></script>
         <script>
         /* **** Leaflet **** */
 
@@ -96,10 +100,20 @@
         // Add base layers
         L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(map);
 
+
+        // add location control to global name space for testing only
+        // on a production site, omit the "lc = "!
+        lc = L.control.locate({
+        strings: {
+        title: "Show me where I am, yo!"
+        }
+        }).addTo(map);
+
         // Fit to overlay bounds (SW and NE points with (lat, lon))
         map.fitBounds([[45.7109859325, -88.0566822162], [46.0227013706, -88.6857678793]]);
 
         </script>
+
 
         </body>
         </html>
